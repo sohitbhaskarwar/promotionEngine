@@ -1,4 +1,4 @@
-package com.cart.build.models;
+package com.cart.build.service;
 
 public enum PromotionType {
     PERCENT_WISE,
