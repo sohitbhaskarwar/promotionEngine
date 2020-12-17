@@ -10,12 +10,13 @@ import static org.junit.Assert.assertThat;
 public class ProductTest {
 
     @Test
-    public void AddNewProductTest(){
+    public void AddNewProductTest() {
         Product product = new Product(1,"ABC", 20);
         ProductManager productManager = new ProductManager();
 
         assertThat(productManager.addProduct(product), Is.is(true));
         assertThat(productManager.addProduct(product), Is.is(false));
+        assertThat(productManager.addProduct(null), Is.is(true));
 
     }
 }

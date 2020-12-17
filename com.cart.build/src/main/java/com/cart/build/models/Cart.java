@@ -6,11 +6,21 @@ import java.util.*;
 public class Cart {
 
     Integer cartId;
-    ArrayList<ProductDetails> productList;
-    List<Promotion> promotionsAppliesOnCart;
-    Integer totalDiscount;
-    Integer totalAmount;
-    Integer finalAmount;
+    Map<Integer, ProductDetails> productUnitsMap;
+    Promotion promotionsAppliesOnCart;
+    long totalDiscount;
+    long totalAmount;
+    long finalAmount;
+
+    public Cart(Integer cartId, Map<Integer, ProductDetails> productUnitsMap, Promotion promotionsAppliesOnCart,
+                Integer totalDiscount, Integer totalAmount, Integer finalAmount) {
+        this.cartId = cartId;
+        this.productUnitsMap = productUnitsMap;
+        this.promotionsAppliesOnCart = promotionsAppliesOnCart;
+        this.totalDiscount = totalDiscount;
+        this.totalAmount = totalAmount;
+        this.finalAmount = finalAmount;
+    }
 
     public Integer getCartId() {
         return cartId;
@@ -20,43 +30,43 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public ArrayList<ProductDetails> getProductList() {
-        return productList;
+    public Map<Integer, ProductDetails> getProductUnitsMap() {
+        return productUnitsMap;
     }
 
-    public void setProductList(ArrayList<ProductDetails> productList) {
-        this.productList = productList;
+    public void setProductUnitsMap(Map<Integer, ProductDetails> productUnitsMap) {
+        this.productUnitsMap = productUnitsMap;
     }
 
-    public List<Promotion> getPromotionsAppliesOnCart() {
+    public Promotion getPromotionsAppliesOnCart() {
         return promotionsAppliesOnCart;
     }
 
-    public void setPromotionsAppliesOnCart(List<Promotion> promotionsAppliesOnCart) {
+    public void setPromotionsAppliesOnCart(Promotion promotionsAppliesOnCart) {
         this.promotionsAppliesOnCart = promotionsAppliesOnCart;
     }
 
-    public Integer getTotalDiscount() {
+    public long getTotalDiscount() {
         return totalDiscount;
     }
 
-    public void setTotalDiscount(Integer totalDiscount) {
+    public void setTotalDiscount(long totalDiscount) {
         this.totalDiscount = totalDiscount;
     }
 
-    public Integer getTotalAmount() {
+    public long getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Integer totalAmount) {
+    public void setTotalAmount(long totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public Integer getFinalAmount() {
+    public long getFinalAmount() {
         return finalAmount;
     }
 
-    public void setFinalAmount(Integer finalAmount) {
+    public void setFinalAmount(long finalAmount) {
         this.finalAmount = finalAmount;
     }
 }

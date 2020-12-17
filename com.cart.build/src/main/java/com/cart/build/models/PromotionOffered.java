@@ -1,15 +1,18 @@
 package com.cart.build.models;
 
-import com.cart.build.service.PromotionType;
-
 public class PromotionOffered {
-    PromotionType promotionType;
 
-    public PromotionType getPromotionType() {
-        return promotionType;
+   Integer amount;
+
+    public PromotionOffered(Integer amount) {
+        this.amount = amount;
     }
 
-    public void setPromotionType(PromotionType promotionType) {
-        this.promotionType = promotionType;
+    public Integer getDiscountAmount() {
+        return amount;
+    }
+
+    public void setDiscountAmount(Integer discountAmount) {
+        this.amount = discountAmount;
     }
 }
