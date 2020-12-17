@@ -9,6 +9,7 @@ public class PromotionManager {
 
     public static HashMap<Integer, Promotion> promotionMap = new HashMap<>();
 
+
     public boolean addNewPromotion(Promotion promotion){
         try{
             if(promotion == null ){

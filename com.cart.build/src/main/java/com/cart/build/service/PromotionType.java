@@ -1,6 +1,7 @@
 package com.cart.build.service;
 
 public enum PromotionType {
-    PERCENT_WISE,
+    AMOUNT_WISE,
     UNIT_WISE;
+
 }

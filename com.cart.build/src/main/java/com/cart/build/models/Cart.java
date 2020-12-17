@@ -6,13 +6,13 @@ import java.util.*;
 public class Cart {
 
     Integer cartId;
-    Map<Integer, ProductDetails> productUnitsMap;
+    HashMap<Integer, ProductDetails> productUnitsMap;
     Promotion promotionsAppliesOnCart;
     long totalDiscount;
     long totalAmount;
     long finalAmount;
 
-    public Cart(Integer cartId, Map<Integer, ProductDetails> productUnitsMap, Promotion promotionsAppliesOnCart,
+    public Cart(Integer cartId, HashMap<Integer, ProductDetails> productUnitsMap, Promotion promotionsAppliesOnCart,
                 Integer totalDiscount, Integer totalAmount, Integer finalAmount) {
         this.cartId = cartId;
         this.productUnitsMap = productUnitsMap;
@@ -30,11 +30,11 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public Map<Integer, ProductDetails> getProductUnitsMap() {
+    public HashMap<Integer, ProductDetails> getProductUnitsMap() {
         return productUnitsMap;
     }
 
-    public void setProductUnitsMap(Map<Integer, ProductDetails> productUnitsMap) {
+    public void setProductUnitsMap(HashMap<Integer, ProductDetails> productUnitsMap) {
         this.productUnitsMap = productUnitsMap;
     }
 

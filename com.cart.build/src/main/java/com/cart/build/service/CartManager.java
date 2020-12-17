@@ -59,4 +59,15 @@ public class CartManager {
     public long getFinalAmount(Cart cart) {
         return cart.getTotalAmount() - cart.getTotalDiscount();
     }
+
+    /*public void promoAppliedOnCart(Cart cart) {
+        calculatePromoForCart();
+        cart.set();
+    }
+
+    private void calculatePromoForCart(Cart cart) {
+        HashMap<Integer,ProductDetails> productDetailsMap = cart.getProductUnitsMap();
+
+
+    }*/
 }

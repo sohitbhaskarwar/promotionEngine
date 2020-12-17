@@ -41,7 +41,7 @@ public class TestPromotion {
 
         //Promotion p = new Promotion(1, productDetailsList, PromotionType.PERCENT_WISE, promotionOffered);
         PromotionManager promotionManager = new PromotionManager();
-        assertThat(promotionManager.addNewPromotion(new Promotion(1, productDetailsList, PromotionType.PERCENT_WISE,
+        assertThat(promotionManager.addNewPromotion(new Promotion(1, productDetailsList, PromotionType.AMOUNT_WISE,
                 promotionOffered)), Is.is(true));
     }
 

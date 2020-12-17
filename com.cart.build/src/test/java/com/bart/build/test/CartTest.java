@@ -15,15 +15,16 @@ import static org.junit.Assert.assertThat;
 
 public class CartTest {
 
+
     @Test
     public void addNewCart() {
-        Cart cart = new Cart(1, mockMapDetailsData(), mockPromotionData(), 0, 0, 0);
+        Cart cart = new Cart(1, mockProductDetailsMap(), mockPromotionData(), 0, 0, 0);
         CartManager cartManager = new CartManager();
         assertThat(cartManager.addNewCart(cart), Is.is(true));
 
     }
 
-    public Map<Integer, ProductDetails> mockMapDetailsData(){
+    public Map<Integer, ProductDetails> mockProductDetailsMap(){
         Map<Integer, ProductDetails> map = new HashMap<>();
 
         map.put(1, new ProductDetails(2, (new Product(1, "ABC", 20))));
@@ -34,21 +35,21 @@ public class CartTest {
 
     @Test
     public void validateTotalAmountForCart() {
-        Cart cart = new Cart(1, mockMapDetailsData(), mockPromotionData(), 0, 0, 0);
+        Cart cart = new Cart(1, mockProductDetailsMap(), mockPromotionData(), 0, 0, 0);
         CartManager cartManager = new CartManager();
         assertThat(cartManager.calculateTotalAmount(cart), Is.is((long) 100));
     }
 
     @Test
     public void validateTotalDiscountForCart() {
-        Cart cart = new Cart(1, mockMapDetailsData(), mockPromotionData(), 0, 0, 0);
+        Cart cart = new Cart(1, mockProductDetailsMap(), mockPromotionData(), 0, 0, 0);
         CartManager cartManager = new CartManager();
         assertThat(cartManager.calculateDiscountAmount(cart), Is.is((long) 50));
     }
 
     @Test
     public void validateFinalAmountForCart() {
-        Cart cart = new Cart(1, mockMapDetailsData(), mockPromotionData(), 77, 577, 0);
+        Cart cart = new Cart(1, mockProductDetailsMap(), mockPromotionData(), 77, 577, 0);
         CartManager cartManager = new CartManager();
         assertThat(cartManager.getFinalAmount(cart), Is.is((long) 500));
     }
@@ -66,7 +67,7 @@ public class CartTest {
 
         //Promotion p = new Promotion(1, productDetailsList, PromotionType.PERCENT_WISE, promotionOffered);
         PromotionManager promotionManager = new PromotionManager();
-        Promotion promotion = new Promotion(1, productDetailsList, PromotionType.PERCENT_WISE,
+        Promotion promotion = new Promotion(1, productDetailsList, PromotionType.AMOUNT_WISE,
                 promotionOffered);
         assertThat(promotionManager.addNewPromotion(promotion), Is.is(true));
 
