@@ -9,7 +9,7 @@ public class PromotionManager {
 
     public static HashMap<Integer, Promotion> promotionMap = new HashMap<>();
 
-    public boolean addPromotion(Promotion promotion){
+    public boolean addNewPromotion(Promotion promotion){
         try{
             if(promotion == null ){
                 throw new Exception("Provide promotion details correctly!!!");
@@ -19,9 +19,11 @@ public class PromotionManager {
                 return true;
             }
             else{
+                System.out.println("Promotion already Present with Id!!!!");
                 return false;
             }
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return false;
         }
     }

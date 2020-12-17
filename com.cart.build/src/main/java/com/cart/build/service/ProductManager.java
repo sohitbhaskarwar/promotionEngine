@@ -1,6 +1,7 @@
 package com.cart.build.service;
 
 import com.cart.build.models.Product;
+import com.cart.build.models.ProductDetails;
 
 import java.util.HashMap;
 
@@ -24,4 +25,6 @@ public class ProductManager {
             return true;
         }
     }
+
+
 }

@@ -1,15 +1,24 @@
 package com.cart.build.models;
 
+import java.util.HashMap;
+
 public class ProductDetails {
-    Integer productunits;
+    Integer productUnits;
     Product product;
 
-    public Integer getProductunits() {
-        return productunits;
+    public ProductDetails(Integer productUnits, Product product) {
+        this.productUnits = productUnits;
+        this.product = product;
     }
 
-    public void setProductunits(Integer productunits) {
-        this.productunits = productunits;
+
+
+    public Integer getProductUnits() {
+        return productUnits;
+    }
+
+    public void setProductUnits(Integer productUnits) {
+        this.productUnits = productUnits;
     }
 
     public Product getProduct() {
