@@ -9,15 +9,19 @@ public class ProductManager {
 
     public boolean addProduct(Product product){
         try{
+            if(product == null)
+                    throw  new Exception("Enter Valid Product Details !!!!");
             if(!productMap.containsKey(product.getProductId())){
                 productMap.put(product.getProductId(), product);
                 return true;
             }
             else{
+                System.out.println("Product already Present wiht Id!!!!");
                 return false;
             }
         }catch (Exception e){
-            return false;
+            System.out.println(e.getMessage());
+            return true;
         }
     }
 }
