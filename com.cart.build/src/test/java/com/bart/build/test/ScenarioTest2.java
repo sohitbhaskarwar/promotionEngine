@@ -36,7 +36,7 @@ public class ScenarioTest2 {
 
 
         assertThat(promotionManager.addNewPromotion(new Promotion(3, productDetailsList,
-                PromotionType.AMOUNT_WISE, new PromotionOffered(15))), Is.is(true));
+                PromotionType.AMOUNT_WISE, new PromotionOffered(s5))), Is.is(true));
 
 
     }
