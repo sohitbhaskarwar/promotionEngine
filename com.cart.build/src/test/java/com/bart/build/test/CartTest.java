@@ -39,7 +39,11 @@ public class CartTest {
         assertThat(cartManager.calculateTotalAmount(cart), Is.is((long) 100));
     }
 
+    @Test
     public void validateTotalDiscountForCart() {
+        Cart cart = new Cart(1, mockMapDetailsData(), mockPromotionData(), 0, 0, 0);
+        CartManager cartManager = new CartManager();
+        assertThat(cartManager.calculateDiscountAmount(cart), Is.is((long) 50));
     }
 
     public void validateFinalAmountForCart() {

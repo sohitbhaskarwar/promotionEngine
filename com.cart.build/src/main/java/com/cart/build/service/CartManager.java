@@ -50,4 +50,9 @@ public class CartManager {
         }
         return amount;
     }
+
+    public long calculateDiscountAmount(Cart cart){
+        Promotion promotion = cart.getPromotionsAppliesOnCart();
+        return promotion.getPromotionOffered().getAmount();
+    }
 }
