@@ -55,7 +55,7 @@ public class CartTest {
         assertThat(cartManager.getFinalAmount(cart), Is.is((long) 500));
     }
 
-    private List<Promotion> mockPromotionData() {
+    private HashMap<Promotion, Integer> mockPromotionData() {
 
         ArrayList<ProductDetails> productDetailsList = new ArrayList<>();
 
@@ -72,8 +72,8 @@ public class CartTest {
                 promotionOffered);
         assertThat(promotionManager.addNewPromotion(promotion), Is.is(true));
 
-        List<Promotion> promotionList = new ArrayList<>();
-        promotionList.add(promotion);
-        return promotionList;
+        HashMap<Promotion, Integer> promotionunitMap = new HashMap<>();
+        promotionunitMap.put(promotion, 2);
+        return promotionunitMap;
     }
 }

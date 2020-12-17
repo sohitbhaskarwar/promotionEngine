@@ -52,7 +52,7 @@ public class ScenarioTest2 {
         cart.setTotalDiscount(cartManager.calculateDiscountAmount(cart));
         cart.setFinalAmount(cartManager.getFinalAmount(cart));
 
-        assertThat(cart.getFinalAmount(),Is.is((long) 100));
+        assertThat(cart.getFinalAmount(),Is.is((long) 370));
     }
 
     private Cart mockCartData() {
@@ -68,7 +68,7 @@ public class ScenarioTest2 {
 
         map.put(1, new ProductDetails(5, (new Product(1, "A", 50))));
         map.put(2, new ProductDetails(5, (new Product(2, "B", 30))));
-        map.put(3, new ProductDetails(2, (new Product(3, "C", 20))));
+        map.put(3, new ProductDetails(1, (new Product(3, "C", 20))));
 
         return map;
     }
