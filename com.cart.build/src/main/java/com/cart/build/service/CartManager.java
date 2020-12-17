@@ -54,12 +54,16 @@ public class CartManager {
     }
 
     public long calculateDiscountAmount(Cart cart) {
-        Promotion promotion = cart.getPromotionsAppliesOnCart();
-        if(promotion == null){
+        long discountAmount = 0;
+        HashMap<Promotion, Integer> promotionUnitMap = cart.getPromotionsAppliesOnCart();
+        if(promotionUnitMap == null){
             return 0;
         }
         else {
-            return promotion.getPromotionOffered().getAmount();
+            for(Map.Entry<Promotion, Integer> mapDetails : promotionUnitMap.entrySet()) {
+                discountAmount += mapDetails.getKey().getPromotionOffered().getAmount() * (long) mapDetails.getValue();
+            }
+            return discountAmount;
         }
     }
 
@@ -69,12 +73,12 @@ public class CartManager {
 
     public boolean promoAppliedOnCart(Cart cart) {
         try {
-            Promotion promo = calculatePromoForCart(cart);
-            if(promo == null){
+            HashMap<Promotion, Integer> promotionUnitMap = calculatePromoForCart(cart);
+            if(promotionUnitMap == null){
                 throw new Exception("No promo Can Be Applied On Cart!!!");
             }
             else {
-                cart.setPromotionsAppliesOnCart(promo);
+                cart.setPromotionsAppliesOnCart(promotionUnitMap);
                 return true;
             }
         }catch (Exception e) {
@@ -84,7 +88,7 @@ public class CartManager {
     }
 
 
-    private Promotion calculatePromoForCart(Cart cart) {
+    private HashMap<Promotion, Integer> calculatePromoForCart(Cart cart) {
         HashMap<Integer, ProductDetails > productDetailsMap = cart.getProductUnitsMap();
         HashMap<Promotion, Integer> promotionUnitMap = new HashMap<>();
         Promotion promo = null;
@@ -96,11 +100,10 @@ public class CartManager {
             if(unit > 0) {
                 promotionUnitMap.put(promoMap.getValue(), unit);
                 promo = promoMap.getValue();
-                break;
             }
         }
 
-        return promo;
+        return promotionUnitMap;
     }
 
     public Integer getPromoApplied(List<ProductDetails> promoProductDetails,

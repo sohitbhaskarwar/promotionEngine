@@ -7,12 +7,12 @@ public class Cart {
 
     Integer cartId;
     HashMap<Integer, ProductDetails> productUnitsMap;
-    Promotion promotionsAppliesOnCart;
+    HashMap<Promotion, Integer> promotionsAppliesOnCart;
     long totalDiscount;
     long totalAmount;
     long finalAmount;
 
-    public Cart(Integer cartId, HashMap<Integer, ProductDetails> productUnitsMap, Promotion promotionsAppliesOnCart,
+    public Cart(Integer cartId, HashMap<Integer, ProductDetails> productUnitsMap, HashMap<Promotion, Integer> promotionsAppliesOnCart,
                 Integer totalDiscount, Integer totalAmount, Integer finalAmount) {
         this.cartId = cartId;
         this.productUnitsMap = productUnitsMap;
@@ -38,11 +38,11 @@ public class Cart {
         this.productUnitsMap = productUnitsMap;
     }
 
-    public Promotion getPromotionsAppliesOnCart() {
+    public HashMap<Promotion, Integer> getPromotionsAppliesOnCart() {
         return promotionsAppliesOnCart;
     }
 
-    public void setPromotionsAppliesOnCart(Promotion promotionsAppliesOnCart) {
+    public void setPromotionsAppliesOnCart(HashMap<Promotion, Integer> promotionsAppliesOnCart) {
         this.promotionsAppliesOnCart = promotionsAppliesOnCart;
     }
 

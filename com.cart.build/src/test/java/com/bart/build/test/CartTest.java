@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertThat;
@@ -54,7 +55,7 @@ public class CartTest {
         assertThat(cartManager.getFinalAmount(cart), Is.is((long) 500));
     }
 
-    private Promotion mockPromotionData() {
+    private List<Promotion> mockPromotionData() {
 
         ArrayList<ProductDetails> productDetailsList = new ArrayList<>();
 
@@ -71,6 +72,8 @@ public class CartTest {
                 promotionOffered);
         assertThat(promotionManager.addNewPromotion(promotion), Is.is(true));
 
-        return promotion;
+        List<Promotion> promotionList = new ArrayList<>();
+        promotionList.add(promotion);
+        return promotionList;
     }
 }
