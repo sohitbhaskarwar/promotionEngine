@@ -55,4 +55,8 @@ public class CartManager {
         Promotion promotion = cart.getPromotionsAppliesOnCart();
         return promotion.getPromotionOffered().getAmount();
     }
+
+    public long getFinalAmount(Cart cart) {
+        return cart.getTotalAmount() - cart.getTotalDiscount();
+    }
 }
