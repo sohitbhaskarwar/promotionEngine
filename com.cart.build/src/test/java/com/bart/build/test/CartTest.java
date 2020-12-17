@@ -16,21 +16,33 @@ import static org.junit.Assert.assertThat;
 public class CartTest {
 
     @Test
-    public void addNewCart(){
+    public void addNewCart() {
+        Cart cart = new Cart(1, mockMapDetailsData(), mockPromotionData(), 0, 0, 0);
+        CartManager cartManager = new CartManager();
+        assertThat(cartManager.addNewCart(cart), Is.is(true));
 
-        Promotion promotion = mockPromotionData();
+    }
 
+    public Map<Integer, ProductDetails> mockMapDetailsData(){
         Map<Integer, ProductDetails> map = new HashMap<>();
 
         map.put(1, new ProductDetails(2, (new Product(1, "ABC", 20))));
         map.put(2, new ProductDetails(2, (new Product(2, "XCC", 30))));
 
-        Cart cart = new Cart(1,map, promotion, 0,0,0);
+        return map;
+    }
 
+    @Test
+    public void validateTotalAmountForCart() {
+        Cart cart = new Cart(1, mockMapDetailsData(), mockPromotionData(), 0, 0, 0);
         CartManager cartManager = new CartManager();
+        assertThat(cartManager.calculateTotalAmount(cart), Is.is((long) 100));
+    }
 
-        assertThat(cartManager.addNewCart(cart),Is.is(true));
+    public void validateTotalDiscountForCart() {
+    }
 
+    public void validateFinalAmountForCart() {
     }
 
     private Promotion mockPromotionData() {

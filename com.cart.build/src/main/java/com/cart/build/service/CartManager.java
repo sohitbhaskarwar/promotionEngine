@@ -42,4 +42,12 @@ public class CartManager {
             return true;
         }
     }
+
+    public long calculateTotalAmount(Cart cart) {
+        long amount = 0;
+        for (Map.Entry<Integer, ProductDetails> mapData : cart.getProductUnitsMap().entrySet()) {
+            amount += mapData.getValue().getProductUnits() * mapData.getValue().getProduct().getProdcutPrice();
+        }
+        return amount;
+    }
 }
