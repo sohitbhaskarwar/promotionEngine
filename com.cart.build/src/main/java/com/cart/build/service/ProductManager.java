@@ -22,7 +22,7 @@ public class ProductManager {
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
-            return true;
+            return false;
         }
     }
 

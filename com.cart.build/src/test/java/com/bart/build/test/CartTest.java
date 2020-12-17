@@ -24,8 +24,8 @@ public class CartTest {
 
     }
 
-    public Map<Integer, ProductDetails> mockProductDetailsMap(){
-        Map<Integer, ProductDetails> map = new HashMap<>();
+    public HashMap<Integer, ProductDetails> mockProductDetailsMap(){
+        HashMap<Integer, ProductDetails> map = new HashMap<>();
 
         map.put(1, new ProductDetails(2, (new Product(1, "ABC", 20))));
         map.put(2, new ProductDetails(2, (new Product(2, "XCC", 30))));

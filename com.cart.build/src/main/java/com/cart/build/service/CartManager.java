@@ -7,6 +7,8 @@ import com.cart.build.models.Promotion;
 
 import java.util.*;
 
+import static com.cart.build.service.PromotionManager.promotionMap;
+
 public class CartManager {
 
     public static HashMap<Integer, Cart> cartMap = new HashMap<Integer, Cart>();
@@ -34,7 +36,7 @@ public class CartManager {
                 cartMap.put(cart.getCartId(), cart);
                 return true;
             } else {
-                System.out.println("Cart already Present with Id "+cart.getCartId()+" !!!");
+                System.out.println("Cart already Present with Id " + cart.getCartId() + " !!!");
                 return false;
             }
         } catch (Exception e) {
@@ -51,23 +53,81 @@ public class CartManager {
         return amount;
     }
 
-    public long calculateDiscountAmount(Cart cart){
+    public long calculateDiscountAmount(Cart cart) {
         Promotion promotion = cart.getPromotionsAppliesOnCart();
-        return promotion.getPromotionOffered().getAmount();
+        if(promotion == null){
+            return 0;
+        }
+        else {
+            return promotion.getPromotionOffered().getAmount();
+        }
     }
 
     public long getFinalAmount(Cart cart) {
         return cart.getTotalAmount() - cart.getTotalDiscount();
     }
 
-    /*public void promoAppliedOnCart(Cart cart) {
-        calculatePromoForCart();
-        cart.set();
+    public boolean promoAppliedOnCart(Cart cart) {
+        try {
+            Promotion promo = calculatePromoForCart(cart);
+            if(promo == null){
+                throw new Exception("No promo Can Be Applied On Cart!!!");
+            }
+            else {
+                cart.setPromotionsAppliesOnCart(promo);
+                return true;
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
-    private void calculatePromoForCart(Cart cart) {
-        HashMap<Integer,ProductDetails> productDetailsMap = cart.getProductUnitsMap();
 
+    private Promotion calculatePromoForCart(Cart cart) {
+        HashMap<Integer, ProductDetails > productDetailsMap = cart.getProductUnitsMap();
+        HashMap<Promotion, Integer> promotionUnitMap = new HashMap<>();
+        Promotion promo = null;
 
-    }*/
+        for (Map.Entry<Integer, Promotion> promoMap : promotionMap.entrySet()) {
+            List<ProductDetails> productDetails = promoMap.getValue().getProductDetails();
+            Integer unit = getPromoApplied(productDetails,
+                    productDetailsMap);
+            if(unit > 0) {
+                promotionUnitMap.put(promoMap.getValue(), unit);
+                promo = promoMap.getValue();
+                break;
+            }
+        }
+
+        return promo;
+    }
+
+    public Integer getPromoApplied(List<ProductDetails> promoProductDetails,
+                                   HashMap<Integer, ProductDetails> productsInCart) {
+
+        Integer result = null, count;
+        for(ProductDetails ppd : promoProductDetails) {
+            count = 0;
+            Integer productId = ppd.getProduct().getProductId();
+            if(productsInCart.containsKey(productId)){
+                Integer productUnitsInCart  = productsInCart.get(productId).getProductUnits();
+                if(productUnitsInCart >= ppd.getProductUnits()){
+                    count +=  productUnitsInCart/ ppd.getProductUnits();
+
+                    if(result == null){
+                        result = count;
+                    }
+                    else{
+                        result = Math.min(result, count);
+                    }
+                }
+            }
+
+            if(result == null || count == 0){
+                return 0;
+            }
+        }
+        return result;
+    }
 }
